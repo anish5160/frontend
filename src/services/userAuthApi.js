@@ -28,7 +28,7 @@ export const userAuthApi = createApi({
     }),
     getLoggedUser: builder.query({
       query: (access_token) => ({
-        url: "profile/",
+        url: `${API_URL}/profile/`,
         method: "GET",
         headers: {
           authorization: `Bearer ${access_token}`,
