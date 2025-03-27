@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { unsetUserToken } from "../features/authSlice";
 
+const API_URL = process.env.REACT_APP_API_URL || "https://fullstackapp-11.onrender.com";
+
 export const attendanceApi = createApi({
   reducerPath: "attendanceApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000/api/user/",
+    baseUrl: `${API_URL}/api/user/`,  // ✅ Dynamic API URL
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.access_token;

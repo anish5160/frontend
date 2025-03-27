@@ -1,34 +1,35 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+const API_URL = process.env.REACT_APP_API_URL || "https://fullstackapp-11.onrender.com";
 
 export const userAuthApi = createApi({
-  reducerPath: 'userAuthApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api/user/' }),
+  reducerPath: "userAuthApi",
+  baseQuery: fetchBaseQuery({ baseUrl: API_URL }), // ✅ Using environment variable
   endpoints: (builder) => ({
-    // Existing Endpoints
     registerUser: builder.mutation({
       query: (user) => ({
-        url: 'register/',
-        method: 'POST',
+        url: "register/",
+        method: "POST",
         body: user,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       }),
     }),
     loginUser: builder.mutation({
       query: (user) => ({
-        url: 'login/',
-        method: 'POST',
+        url: "login/",
+        method: "POST",
         body: user,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       }),
     }),
     getLoggedUser: builder.query({
       query: (access_token) => ({
-        url: 'profile/',
-        method: 'GET',
+        url: "profile/",
+        method: "GET",
         headers: {
           authorization: `Bearer ${access_token}`,
         },
@@ -36,33 +37,32 @@ export const userAuthApi = createApi({
     }),
     changeUserPassword: builder.mutation({
       query: ({ actualData, access_token }) => ({
-        url: 'changepassword/',
-        method: 'POST',
+        url: "changepassword/",
+        method: "POST",
         body: actualData,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           authorization: `Bearer ${access_token}`,
         },
       }),
     }),
     sendPasswordResetEmail: builder.mutation({
       query: (user) => ({
-        url: 'send-reset-password-email/',
-        method: 'POST',
+        url: "send-reset-password-email/",
+        method: "POST",
         body: user,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       }),
     }),
-    // ✅ Reset Password Endpoint
     resetPassword: builder.mutation({
       query: ({ uid, token, password, password2 }) => ({
-        url: `reset-password/${uid}/${token}/`, // Match Django URL
-        method: 'POST',
-        body: JSON.stringify({ password, password2 }), // { password: "newpass", password2: "newpass" }
+        url: `reset-password/${uid}/${token}/`,
+        method: "POST",
+        body: JSON.stringify({ password, password2 }),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       }),
     }),
@@ -75,5 +75,5 @@ export const {
   useGetLoggedUserQuery,
   useChangeUserPasswordMutation,
   useSendPasswordResetEmailMutation,
-  useResetPasswordMutation, // ✅ Export the new hook
+  useResetPasswordMutation,
 } = userAuthApi;

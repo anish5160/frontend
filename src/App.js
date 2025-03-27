@@ -9,10 +9,13 @@ import Dashboard from "./pages/Dashboard";
 import LoginReg from "./pages/auth/LoginReg";
 import SendPasswordResetEmail from "./pages/auth/SendPasswordResetEmail";
 import ResetPassword from "./pages/auth/ResetPassword";
+import { useEffect } from "react";
 
 function App() {
   const { access_token } = useSelector((state) => state.auth);
-
+  useEffect(() => {
+    console.log("API URL:", process.env.REACT_APP_API_URL);
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
