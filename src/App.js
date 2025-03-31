@@ -12,10 +12,14 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import { useEffect } from "react";
 
 function App() {
-  const { access_token } = useSelector((state) => state.auth);
   useEffect(() => {
     console.log("API URL:", process.env.REACT_APP_API_URL);
   }, []);
+
+  const access_token = useSelector((state) => state.auth?.access_token || null);
+   console.log(access_token);
+
+   
   return (
     <BrowserRouter>
       <Routes>
