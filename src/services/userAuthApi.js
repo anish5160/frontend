@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const API_URL = process.env.REACT_APP_API_URL || "https://fullstackapp-11.onrender.com";
+const API_URL = process.env.REACT_APP_API_URL || "https://fullstackapp-15.onrender.com";
 
 export const userAuthApi = createApi({
   reducerPath: "userAuthApi",

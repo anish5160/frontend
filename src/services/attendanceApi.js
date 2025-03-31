@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { unsetUserToken } from "../features/authSlice";
 
-const API_URL = process.env.REACT_APP_API_URL || "https://fullstackapp-11.onrender.com";
+const API_URL = process.env.REACT_APP_API_URL || "https://fullstackapp-15.onrender.com";
 
 export const attendanceApi = createApi({
   reducerPath: "attendanceApi",
